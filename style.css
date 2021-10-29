@@ -1,0 +1,915 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;600&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&display=swap');
+
+html{
+  scroll-behavior: smooth;
+}
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    max-width: 100vw;
+  }
+  :root {
+    --accent-color: #598d81;
+    --accent-transparent: rgba(89, 141, 129, 0.5);
+    --mono-chrome:#385952;
+    --primary-color: #d1cecb;
+    --primary-transparent: rgba(209, 206, 203, 0.3);
+    --primary-mono:#52504F;
+    --secondary-color: #ffffff;
+    --complement: #8D5965;
+    --complement-transparent: rgba(141, 89, 101, 0.8);
+    --complement-2:#8C6558;
+    --complement-3:#40241B;
+  }
+  body {
+    margin: 0px;
+    padding: 0px;
+    line-height: 1.4;
+    font-family: 'montserrat', sans-serif;
+    max-width: 100vw;
+  }
+
+  .reflexo-page h2,  .reflexo-page h3{
+    color: var(--accent-color);
+  }
+
+
+
+  h1{
+  font-family: 'hind', sans-serif;
+  color: var(--primary-mono);
+  text-align: center;
+  margin:2em;
+  font-size: 2em;
+
+  }
+  p{
+    max-width:600px;
+  }
+  .icon-parent{
+    width:50px;
+  }
+  .icon{
+    height:30px;
+    max-width: 30px;
+  }
+  /* -------------------MENU STYLES ------------------------ */
+
+  #nav-desktop{
+    display: none;
+  }
+  .desktop-nav{
+    height:70px;
+    width:105%;
+    padding-right:10px;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    top:0;
+    left:0;
+    background-color: var(--primary-color);
+    box-shadow: 0px 10px 15px #888888;
+    }
+
+  #desktop-list{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height:70px;
+    overflow: hidden;
+    width:50vw;
+    justify-content: space-evenly
+  }
+  ul{
+    list-style-type: none;
+    position:relative;
+
+  }
+  #desktop-list li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    margin:0;
+
+
+  }
+  li a:hover {
+    color: var(--primary-mono);
+  }
+
+
+
+
+
+
+/* mobile first navigation */
+
+
+  .menu-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .menu-wrap .toggler {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+  }
+
+  .menu-wrap .hamburger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 60px;
+    height: 60px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* lignes hamburger */
+  .menu-wrap .hamburger > div {
+    position: relative;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-mono);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+  }
+
+  /* lignes du haut et bas */
+  .menu-wrap .hamburger > div::before,
+  .menu-wrap .hamburger > div::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: -10px;
+    width: 100%;
+    height: 2px;
+    background: inherit;
+  }
+
+  /* déplace ligne du bas */
+  .menu-wrap .hamburger > div::after {
+    top: 10px;
+  }
+
+  /* animation toggler */
+  .menu-wrap .toggler:checked + .hamburger > div {
+    transform: rotate(135deg);
+    background: white;
+  }
+
+  /* tourner les lignes en un X  */
+  .menu-wrap .toggler:checked + .hamburger > div:before,
+  .menu-wrap .toggler:checked + .hamburger > div:after {
+    top: 0;
+    transform: rotate(90deg);
+    background: white;
+  }
+
+  /* rotation quand hover une fois checked */
+  .menu-wrap .toggler:checked:hover + .hamburger > div {
+    transform: rotate(225deg);
+  }
+
+  /* montrer le menu */
+  .menu-wrap .toggler:checked ~ .menu {
+    visibility: visible;
+  }
+
+  /* montrer le menu */
+
+  .menu-wrap .toggler:checked ~ .menu > div {
+    transform: scale(1);
+    transition-duration: var(--menu-speed);
+  }
+
+  .menu-wrap .toggler:checked ~ .menu > div > div {
+    opacity: 1;
+    transition:  opacity 0.4s ease 0.4s;
+  }
+
+  .menu-wrap .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    bottom: 0px;
+    left: 0px;
+  }
+
+  .menu-wrap .menu > div {
+    background: var(--accent-transparent);
+    min-width: 300px;
+    height:100%;
+    padding-top: 100px;
+    display: flex;
+    flex: none;
+    align-items:flex-start;
+    justify-content: flex-start;
+    transition: all 0.4s ease;
+  }
+
+  .menu-wrap .menu > div > div {
+    text-align: left;
+    max-width: 90vw;
+    max-height: 100vw;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .menu-wrap .menu > div > div > ul > li {
+    list-style: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 1rem;
+  }
+
+  .menu-wrap .menu > div > div > ul > li > a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.4s ease;
+  }
+  /* ----------------end of menu styles------------------- */
+  h2, h3, h4 {
+    font-family: 'hind', sans-serif;
+    color: var(--primary-mono);
+    margin-top:30px;
+  }
+  p{
+    font-family: 'hind', sans-serif;
+    color: var(--primary-mono);
+  }
+  /* q */
+  /*-------------------------- REFLEX CONTAINER STYLES  ----------------- */
+
+
+  /* -----------------------Footer styles  ------------------------*/
+  .foot{
+    width:100%;
+    background-color: var(--primary-mono);
+    display: flex;
+    flex-flow: row wrap;
+    padding: 20px;
+    justify-content: space-around;
+    box-shadow: 0px -10px 15px #888888;
+  }
+
+  .foot h3, .foot p{
+    color: var(--primary-color);
+  }
+  .col-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width:300px;
+  }
+  .lien-foot{
+    text-decoration: none;
+    color: var(--accent-color);
+    align-self: flex-start;
+  }
+
+  #foot-logo{
+    /* max-height: 200px; */
+    max-width: 200px;
+    align-self: center;
+    padding-top: 20px;
+  }
+
+  /* img{max-width: 300px;} */
+  /* --------------------------------------------------------- */
+
+
+  a{
+    margin:10px;
+    text-decoration: none;
+    color: var(--primary-mono);
+
+  }
+
+
+  .big-logo{
+    height: 90vh;
+  }
+
+  .hero{
+    display: flex;
+    justify-content: space-between ;
+    align-items: center;
+    flex-direction: column;
+    background-image: url('media/footmassage.jpg');
+    background-position: 60%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    padding-top: 100px;
+
+  }
+  .overlay{
+    height: 100vh;
+    width: auto;
+    background-color: var(--accent-transparent);
+  }
+  .logo-container{
+    display: block;
+  }
+  .logo-container img{
+    width:250px;
+    height: auto;
+  }
+  .btn-container{
+    max-width: 600px;
+    display: flex;
+    flex-flow: row;
+
+  }
+  .btn{
+    /* margin: 30px; */
+    padding: 10px;
+    border: solid 2px var(--primary-color) ;
+    border-radius: 3px;
+    color: var(--primary-mono);
+    text-decoration: none;
+  }
+  .btn2{
+    margin: 30px;
+    padding: 10px;
+    border: solid 2px var(--primary-mono) ;
+    border-radius: 3px;
+    color: var(--primary-mono);
+    text-decoration: none;
+    max-width: 150px;
+  }
+  .btn2:hover{
+    border: solid 2px var(--complement) ;
+    color: var(--complement);
+    opacity: 0.5;
+    font-size: 1.2em;
+    transition: 1s ;
+
+  }
+  .btn:hover{
+
+    background: var(--primary-transparent);
+    font-size: 1.2em;
+    transition: 1s ;
+  }
+
+  /* .hero>*{
+    margin: 30px;
+
+  } */
+
+  .noura-container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 40vh;
+    background-color: var(--complement-transparent);
+  }
+
+  .noura-container *{
+    color: var(--secondary-color);
+  }
+  .btn-container{
+    margin:20px;
+    display: flex;
+    flex-flow: column;
+    align-self: center;
+
+  }
+
+  .nav div>a{
+    text-decoration: none;
+    color: var(--secondary-color);
+  }
+
+
+/* -------"la réflexologie c'est quoi en faite?" */
+  #reflex-container{
+    display: flex;
+    flex-direction: column;
+    align-items:  center;
+    width:100%;
+    padding:50px 0px;
+
+  }
+  #reflex-container .inner-reflexo{
+    text-align: left;
+  }
+
+  #reflex-container h2, #reflex-container  h3{
+    color: var(--complement);
+  }
+  .parent-reflexo{
+    padding: 0 30px;
+    text-align: center;
+    width:100%;
+  }
+  .enfant-reflex p{
+    margin: 0 auto;
+  }
+  .inner-reflexo{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start ;
+    justify-content: space-around;
+    text-align: left;
+  }
+
+  .reflexo{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin: 10px;
+    max-width: 300px;
+  }
+
+  .reflexo>img{
+    max-width: 80%;
+  }
+
+
+
+
+  /* PAGE DE CONTACT */
+
+
+  /* .text-box{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-around;
+    line-height: 28px;
+    padding: 70px;
+    margin: 30px;
+  } */
+
+  /* -------------------SECTION TARIFS---------------- */
+  #tarif{
+    background-color: var(--complement-transparent);
+    /* height:600px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 40px;
+  }
+
+  .prix-container{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  .prix{
+    width:200px;
+    height:300px;
+    margin:20px;
+    padding:20px;
+    border: 3px solid var(--primary-color);
+    border-radius: 7px;
+    align-self: flex-start;
+  }
+  .prix *{
+    color: var(--secondary-color);
+
+  }
+
+
+/* --------------PAGE CONTACT----------- */
+
+
+  .field{
+    display: flex;
+    flex-direction: row;
+    align-items: ;
+    justify-content: flex-start;
+    margin: 5px;
+    padding:5px;
+    border-bottom: 1px solid var(--primary-color);
+    width:250px;
+  }
+  .adresse>.icon-parent>.icon{
+    margin-top:30px;
+  }
+
+
+/* ------------CONTACT FORM page de contact------------- */
+
+  #contact-form{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    height:700px;
+    /* padding-top:100px; */
+  }
+
+  form{
+    padding-top:20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    border: solid 1px var(--primary-color);
+    padding:30px;
+    height: 600px;
+  }
+
+  div.perso-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  textarea {
+    min-width: 250px;
+    height: 100px;
+    max-width: 75vw;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    color: var(--primary-mono);
+  }
+  label{
+    margin-top: 20px;
+  }
+  span{
+    color: var(--complement);
+  }
+  input.short-text{
+    width:120px;
+
+  }
+  /* style du bouton submit */
+
+  input[type=submit] {
+    cursor: pointer;
+    background-color: transparent;
+    border: solid 2px var(--accent-color);
+    color: var(--accent-color);
+    font-family: inherit;
+    font-size: 1em;
+    font-style: normal;
+  }
+
+  input[type=submit]:hover {
+      color: var(--accent-transparent);
+    }
+  input#email{
+    width:250px;
+
+  }
+  input[type=text], select {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+
+    }
+
+
+    /*  CONTACT INFORMATION */
+    .contact{
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      justify-content: space-evenly;
+      padding: 30px;
+    }
+  .contact-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width:280px;
+  }
+    .logo-contact{
+      max-height:250px;
+      max-width: 250px;
+    }
+  /* SLIDESHOW PAGE DE CONTACT */
+
+
+.slider{
+  text-align: center;
+}
+
+
+
+
+  /* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  height:90vh;
+  padding: 30px 0px;
+  position: relative;
+  margin: 30px auto;
+  text-align:center;
+  overflow: hidden;
+  z-index: 0;
+
+
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+  height:100%;
+  width:100%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+}
+
+
+.mySlides img, .mySlides iframe{
+  min-height: 500px;
+  max-width: 1000px;
+
+}
+.slide1{
+  background-image: url('media/batiment.png');
+  display: block;
+
+}
+.slide2{
+  background-image: url('media/attente.jpeg');
+}
+
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 3px;
+  user-select: none;
+  background-color: var(--primary-mono)
+}
+.prev{
+  left: 0;
+  margin-left:20px;
+}
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: var(--accent-transparent);
+}
+
+/* Caption text */
+.text {
+  /* background-color: var(--primary-color); */
+  font-size: 15px;
+  padding: 12px;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+}
+
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: var(--primary-color);
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+/* .dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+} */
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+  /* --------------------------------page RéFLEXOLOGIE---------------- */
+
+  /* MOBILE FIRST */
+
+  body.reflexo-page{
+    max-width: 100%;
+    margin: 0px;
+  }
+  .quoi{
+    background-color: var(--accent-transparent);
+    padding:70px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .quoi *{
+    color: var(--secondary-color);
+    margin:10px;
+
+  }
+
+   .pourquoi, .comment{
+    display: flex;
+    flex-flow: row wrap;
+    /* width: 100vw; */
+    justify-content: center;
+    align-items: center;
+    /* align-items: center; */
+    /* padding:20px; */
+  }
+  .pourquoi, .comment{
+    margin: 30px;
+    /* width:300px; */
+  }
+
+  .raisons{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-self: center;
+  }
+  .raison{
+    max-width:300px;
+  }
+  .img-container{
+    margin-top: 20px;
+    max-width: 100vw;
+  }
+  .img-container img{
+    width:300px;
+  }
+
+
+
+
+  @media screen and (min-width:960px) {
+    #nav-desktop{
+      display: flex;
+      position: fixed;
+      top:0;
+      right:0;
+      z-index: 3;
+    }
+
+  #nav-desktop li a:hover{
+    opacity: 0.5;
+    font-size: 1.2em;
+    transition: 1s ;
+  }
+  #nav-desktop li a img:hover{
+    opacity: 0.5;
+    height: 38px;
+    transition: 1s ;
+  }
+    .menu-wrap{
+      display: none;
+    }
+    .hero{
+      background-position: top left;
+    }
+    /* .pourquoi{
+      width: 960px;
+    } */
+    .quoi{
+      padding-top: 140px;
+    }
+    .pourquoi{
+      display: flex;
+      flex-flow: row wrap;
+      align-items: flex-start;
+    }
+    .comment{
+      max-width:400px;
+    }
+    .title{
+      width:700px;
+    }
+    .raisons{
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-evenly;
+      align-self: center;
+      margin: 0px 100px;
+      width: 700px;
+    }
+    .comment{
+      height: 400px;
+    }
+
+
+    /* PAGE DE CONTACT */
+
+    /* ------------CONTACT info-------------- */
+  #contact-form{
+    padding-top:100px;
+}
+.mySlides {
+  display: none;
+  height:100%;
+  width:1000px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+  .separator{
+    width: 2px;
+    height: 600px ;
+    background-color: var(--primary-color);
+    margin-top: 100px;
+  }
+
+    /* ------------CONTACT FORM-------------- */
+
+
+    /* #contact-page{
+      display:flex;
+      flex-flow: row wrap;
+    } */
+    /* .trouver{
+      padding-top:100px;
+      max-width: 400px;
+    }
+
+    .photos{
+        display: flex;
+        flex-flow: row;
+
+      }
+
+    .maps *{
+        max-width: 600px;
+        max-height: 600px;
+    }
+    iframe{
+        max-width: 600px;
+        max-height: 600px;
+      } */
+
+    /* Desktop navigation */
+
+
+  }
